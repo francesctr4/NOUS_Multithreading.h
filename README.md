@@ -28,3 +28,30 @@ A single-header, cross-platform C++11 library for managing concurrent task execu
 
 **Documentation:**  
 - 
+#include "NOUS_Multithreading.h"
+```
+int main() {
+    using namespace NOUS_Multithreading;
+    RegisterMainThread();  // Enable main thread tracking
+
+    // Create job system (auto-size to hardware threads)
+    NOUS_JobSystem jobSystem;
+
+    // Submit jobs
+    jobSystem.SubmitJob([] {
+        std::cout << "Job 1 running on thread " 
+                  << std::this_thread::get_id() << "\n";
+    }, "Job_1");
+
+    jobSystem.SubmitJob([] {
+        std::cout << "Job 2 running on thread " 
+                  << std::this_thread::get_id() << "\n";
+    }, "Job_2");
+
+    jobSystem.WaitForPendingJobs();  // Block until done
+
+    JobSystemDebugInfo(jobSystem);   // Print diagnostics
+    UnregisterMainThread();
+    return 0;
+}
+```
