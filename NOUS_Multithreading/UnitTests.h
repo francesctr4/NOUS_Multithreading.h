@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UNIT_TESTS_H
+#define UNIT_TESTS_H
 
 #include "NOUS_Multithreading.h"
 
@@ -470,3 +471,4 @@ TEST_F(JobSystemTest, DynamicThreadPoolResizing)
 #pragma endregion
 
 #endif // ENABLE_UNIT_TESTS
+#endif // UNIT_TESTS_H
