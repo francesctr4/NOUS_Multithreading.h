@@ -19,17 +19,18 @@ A single-header, cross-platform C++11 library for managing concurrent task execu
 ---
 
 ### **Dependencies:**  
+
 - ISO C++11 Standard (compile with `/std:c++11` or `-std=c++11`) or newer
 
 ---
 
-### **Instructions:**
+### **Setup:**
 
-Add NOUS_Multithreading.h to Your Project. Simply copy the NOUS_Multithreading.h header file into your project directory or include path.
-
-Include the Header in Your Source Files #include "NOUS_Multithreading.h"
-
-Start Using the Thread Pool and Job System. Refer to the usage examples and API documentation provided in this repository to integrate the job system into your application.
+1. Download or copy the file ```NOUS_Multithreading.h``` into your project directory and add it to the project.
+   
+2. Include the header in your source files: ```#include "NOUS_Multithreading.h"```.
+   
+3. Refer to the usage examples and API documentation provided to start using the job system into your application.
 
 ---
 
@@ -74,6 +75,9 @@ int main(int argc, char** argv)
    
    // Wait for completion
    jobSystem->WaitForPendingJobs();
+
+   // Optional debug output
+   NOUS_Multithreading::JobSystemDebugInfo(*jobSystem);
    
    // Clean up when done
    delete jobSystem;
@@ -83,3 +87,7 @@ int main(int argc, char** argv)
    return 0;
 }
 ```
+
+### **Documentation:**  
+
+wip
