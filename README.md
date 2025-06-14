@@ -8,7 +8,7 @@ A single-header, cross-platform C++11 library for managing concurrent task execu
 
 ---
 
-**Author:** Francesc Teruel Rodriguez (francesctr4 on GitHub)  
+**Author:** Francesc Teruel Rodriguez ([francesctr4](https://github.com/francesctr4) on GitHub)  
 **Created:** 30/06/2025  
 **Version:** 1.0  
 **Repository:** [https://github.com/francesctr4/NOUS_Multithreading.h](https://github.com/francesctr4/NOUS_Multithreading.h)  
