@@ -6,6 +6,25 @@
 
 A single-header, cross-platform C++11 library for managing concurrent task execution.
 
+![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
+![C++11](https://img.shields.io/badge/C%2B%2B-11%2B-blue)
+
+---
+
+## 📚 Table of Contents
+
+- [Overview](#overview)
+- [Dependencies](#dependencies)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Quick Start](#quick-start)
+- [Documentation](#documentation)
+  - [`NOUS_Job`](#-nous_job)
+  - [`NOUS_Thread`](#-nous_thread)
+  - [`NOUS_ThreadPool`](#-nous_threadpool)
+  - [`NOUS_JobSystem`](#-nous_jobsystem)
+  - [Global Functions](#-global-functions)
+
 ---
 
 **Author:** Francesc Teruel Rodriguez ([francesctr4](https://github.com/francesctr4) on GitHub)  
