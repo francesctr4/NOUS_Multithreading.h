@@ -65,7 +65,7 @@ int main(int argc, char** argv)
 {
    NOUS_Multithreading::RegisterMainThread();
    
-   // Create the job system dynamically
+   // Create the job system dynamically (using hardware concurrency)
    NOUS_Multithreading::NOUS_JobSystem* jobSystem = new NOUS_Multithreading::NOUS_JobSystem();
    
    // Submit jobs
