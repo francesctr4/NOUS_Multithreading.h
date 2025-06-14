@@ -20,3 +20,11 @@ A single-header, cross-platform C++11 library for managing concurrent task execu
 
 **Dependencies:**  
 - ISO C++11 Standard (compile with `/std:c++11` or `-std=c++11`) or newer
+
+---
+
+**Instructions:**  
+- add the .h to your project
+
+**Documentation:**  
+- 
