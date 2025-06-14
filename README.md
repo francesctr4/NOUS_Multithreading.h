@@ -90,75 +90,218 @@ int main(int argc, char** argv)
 
 ### **Documentation**  
 
-#### NOUS_Job
-Represents an executable task with a name and function.
+## ⚙️ `NOUS_Job`
+Represents an individual executable task with a name and function.
 
-/// @brief NOUS_Job constructor.
-```NOUS_Job(const std::string& name, std::function<void()> func)```
+---
 
-/// @brief Executes the stored function inside the job.
-```void Execute();```
+### `NOUS_Job(const std::string& name, std::function<void()> func)`
+Creates a new job with a given name and function.
 
-/// @return std::string with the NOUS_Job name identifier.
-```const std::string& GetName();```
+- **Parameters:**
+  - `name` — A string identifier for the job (used for debugging/logging).
+  - `func` — The function to execute when the job runs.
 
-#### NOUS_Thread
-std::thread wrapper with additional metadata (name, state, timer,...)
+---
 
-```Start, join, and track execution time```
+### `void Execute()`
+Executes the job's stored function.
 
-```Set and get job/thread name/state```
+- **Behavior:** Runs the function passed during construction.
 
-```static SleepMS(ms) utility```
+---
 
-#### NOUS_ThreadPool
-Manages a pool of worker threads and job distribution between them.
+### `const std::string& GetName()`
+Returns the name identifier of the job.
 
-/// @brief NOUS_ThreadPool constructor.
-/// @note Marked explicit to prevent implicit conversions and copy-initialization from a single argument.
-```explicit NOUS_ThreadPool(uint8_t numThreads);```
+- **Returns:** A constant reference to the job's name.
 
-/// @brief Adds a job to the queue and notifies a worker.
-/// @param job The job to be executed.
-```void SubmitJob(NOUS_Job* job);```
+## 🧵 `NOUS_Thread`
+A wrapper around `std::thread` with additional metadata for job execution, tracking, and debug support.
 
-/// @brief Deletes pending jobs, joins all threads and cleans up resources afterwards.
-```void Shutdown();```
+---
 
-/// @return A vector of NOUS_Thread contained inside the thread pool.
-```const std::vector<NOUS_Thread*>& GetThreads();```
+### 🔨 Constructors & Assignment
 
-/// @return A queue of NOUS_Job to be executed by the thread pool.
-```const std::queue<NOUS_Job*>& GetJobQueue();```
+#### `NOUS_Thread()`
+Initializes a thread object with default values. Does not start the thread automatically.
 
-#### NOUS_JobSystem
+#### `~NOUS_Thread()`
+Destructor. Automatically joins the thread if it is still running.
+
+---
+
+### ▶️ `void Start(std::function<void()> func)`
+Starts the thread with the specified function.
+
+- **Parameters:**
+  - `func` — The function to be executed on the thread.
+- **Note:** Does nothing if the thread is already running.
+
+---
+
+### 🔚 `void Join()`
+Joins the thread if it's joinable and marks it as no longer running.
+
+---
+
+### 🔧 Setters and Getters
+
+#### `void SetName(const std::string& name)`
+Sets a name for the thread (for debugging purposes).
+
+#### `const std::string& GetName() const`
+Returns the thread's name.
+
+#### `void SetThreadState(ThreadState state)`
+Sets the current state (`READY`, `RUNNING`) of the thread.
+
+#### `ThreadState GetThreadState() const`
+Gets the current thread state.
+
+#### `void SetCurrentJob(NOUS_Job* job)`
+Assigns the job currently running on the thread.
+
+#### `NOUS_Job* GetCurrentJob() const`
+Returns a pointer to the currently running job, or `nullptr`.
+
+#### `bool IsRunning() const`
+Returns `true` if the thread is still active.
+
+#### `uint16_t GetID() const`
+Returns the numeric ID of the thread.
+
+---
+
+### ⏱️ Execution Time Tracking
+
+#### `void StartExecutionTimer()`
+Starts a timer to track how long the thread runs its current job.
+
+#### `void StopExecutionTimer()`
+Stops the timer after job execution ends.
+
+#### `double GetExecutionTimeMS() const`
+Returns the execution duration in milliseconds.  
+If the timer is still running, returns the current elapsed time.
+
+---
+
+### 🧭 Thread Identification Utilities
+
+#### `void SetThreadID(std::thread::id id)`
+Manually sets a thread ID using the hash of the given `std::thread::id`.
+
+#### `static uint16_t GetThreadID(std::thread::id id)`
+Generates a hashed `uint16_t` ID from a given thread ID.
+
+---
+
+### 🧾 State Description
+
+#### `static const std::string GetStringFromState(const ThreadState& state)`
+Converts a `ThreadState` enum to a string representation (`READY`, `RUNNING`, or `UNKNOWN`).
+
+---
+
+### 😴 Sleep Utility
+
+#### `static const void SleepMS(const uint32_t& ms)`
+Pauses the current thread for the specified number of milliseconds.
+
+## 🧵 `NOUS_ThreadPool`
+Manages a pool of worker threads and distributes jobs among them.
+
+---
+
+### `explicit NOUS_ThreadPool(uint8_t numThreads)`
+Constructs a new thread pool with a specified number of worker threads.
+
+- **Parameters:**
+  - `numThreads` — Number of worker threads to initialize.
+- **Note:** Marked `explicit` to prevent accidental implicit conversions.
+- **Behavior:** Spawns `numThreads` and assigns each a worker loop.
+
+---
+
+### `void SubmitJob(NOUS_Job* job)`
+Adds a job to the internal queue and notifies a waiting worker thread.
+
+- **Parameters:**
+  - `job` — Pointer to the job to be executed.
+
+---
+
+### `void Shutdown()`
+Gracefully shuts down the thread pool.
+
+- **Description:**  
+  - Waits for all jobs to finish.  
+  - Deletes all remaining queued jobs.  
+  - Joins and destroys all worker threads.  
+- **Usage:** Should be called manually if early shutdown is needed (automatically called in destructor).
+
+---
+
+### `const std::vector<NOUS_Thread*>& GetThreads()`
+Returns a reference to the internal vector of worker threads.
+
+- **Returns:** `std::vector` of pointers to `NOUS_Thread`.
+
+---
+
+### `const std::queue<NOUS_Job*>& GetJobQueue()`
+Returns a reference to the internal job queue.
+
+- **Returns:** `std::queue` of pending `NOUS_Job*` tasks.
+
+## 🧠 `NOUS_JobSystem`
 High-level interface for job submission and management.
 
-/// @brief NOUS_JobSystem constructor.
-/// @param size: Number of worker threads available inside the thread pool.
-/// @note If size is not specified, c_MAX_HARDWARE_THREADS is used.
-```NOUS_JobSystem(const uint8_t size = c_MAX_HARDWARE_THREADS);```
+---
 
-/// @brief Submits a job to the thread pool, to be executed by a free worker thread.
-/// @note Job executes immediately if thread pool size is 0 (running on Main Thread).
-/// @param userJob: The function to execute.
-/// @param jobName: Optional name identifier.
-```void SubmitJob(std::function<void()> userJob, const std::string& jobName = "Unnamed");```
+### `NOUS_JobSystem(const uint8_t size = c_MAX_HARDWARE_THREADS)`
+Creates a new job system with a configurable number of worker threads.
 
-/// @brief Blocks until all submitted jobs complete.
-```void WaitForPendingJobs();```
+- **Parameters:**
+  - `size` — Number of threads in the thread pool.  
+    If omitted, defaults to `c_MAX_HARDWARE_THREADS`.
+- **Note:** If `size` is `0`, jobs will execute sequentially on the main thread.
 
-/// @brief Resizes the thread pool to the specified number of threads.
-/// @param newSize: The new number of worker threads in the pool.
-/// @note If the size passed is 0, the program becomes single-threaded.
-/// @note Ensures all current jobs finish before resizing.
-```void Resize(uint8_t newSize);```
+---
 
-/// @return Reference to the underlying thread pool.
-```const NOUS_ThreadPool& GetThreadPool() const;```
+### `void SubmitJob(std::function<void()> userJob, const std::string& jobName = "Unnamed")`
+Submits a job to the thread pool to be executed by an available worker thread.
 
-/// @return Number of pending unprocessed jobs.
-```int GetPendingJobs() const;```
+- **Parameters:**
+  - `userJob` — The function (job) to execute.
+  - `jobName` — (Optional) A string identifier for the job.
+- **Note:** If no worker threads are present, the job is executed immediately on the main thread.
+
+---
+
+### `void WaitForPendingJobs()`
+Blocks the calling thread until all submitted jobs are completed.
+
+---
+
+### `void Resize(uint8_t newSize)`
+Resizes the thread pool to a new number of worker threads.
+
+- **Parameters:**
+  - `newSize` — New number of worker threads.
+- **Note:** Waits for all current jobs to finish before resizing.
+- **Note:** If `newSize` is `0`, the system switches to single-threaded mode.
+
+---
+
+### `const NOUS_ThreadPool& GetThreadPool() const`
+Returns a reference to the internal `NOUS_ThreadPool` used by the job system.
+
+---
+
+### `int GetPendingJobs() const`
+Returns the number of pending, unprocessed jobs still in the system.
 
 ## 🔧 Global Functions
 
