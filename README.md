@@ -27,9 +27,9 @@ A single-header, cross-platform C++11 library for managing concurrent task execu
 - add the .h to your project
 
 **Documentation:**  
-- 
-#include "NOUS_Multithreading.h"
 ```
+#include "NOUS_Multithreading.h"
+
 int main() {
     using namespace NOUS_Multithreading;
     RegisterMainThread();  // Enable main thread tracking
