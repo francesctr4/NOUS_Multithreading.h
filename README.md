@@ -43,6 +43,11 @@ A single-header, cross-platform C++11 library for managing concurrent task execu
 
 ---
 
+### **Contributing**
+Pull requests are welcome! If you'd like to suggest improvements, add features, or report issues, feel free to open a GitHub issue or PR.
+
+---
+
 ### **Setup**
 
 1. Download or copy the file ```NOUS_Multithreading.h``` into your project directory and add it to the project.
