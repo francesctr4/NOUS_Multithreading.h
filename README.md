@@ -33,6 +33,8 @@ Include the Header in Your Source Files
 Start Using the Thread Pool and Job System
 Refer to the usage examples and API documentation provided in this repository to integrate the job system into your application.
 
+---
+
 **Documentation:**  
 Register the Main Thread
 1. Begin by calling RegisterMainThread() to retrieve and store information about the main thread.
@@ -48,6 +50,8 @@ Wait for Pending Jobs
 
 Shutdown and Cleanup
 5. After all jobs have been processed, destroy the job system instance and call UnregisterMainThread() to clean up the main thread information.
+
+---
 
 **Quick start:**  
 ```
