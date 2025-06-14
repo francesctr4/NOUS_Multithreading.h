@@ -1,4 +1,4 @@
-# NOUS_Multithreading.h (WIP)
+# NOUS_Multithreading.h
 
 ---
 
