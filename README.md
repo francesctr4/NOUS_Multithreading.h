@@ -69,6 +69,7 @@ int main(int argc, char** argv)
    
    // Clean up when done
    delete jobSystem;
+
    NOUS_Multithreading::UnregisterMainThread();
    
    return 0;
