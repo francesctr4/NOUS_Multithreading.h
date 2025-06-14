@@ -19,6 +19,10 @@ A single-header, cross-platform C++11 library for managing concurrent task execu
 **License:** MIT License  
 © 2025 Francesc Teruel Rodriguez
 
+this is part of my tfg: Enhancing Software Performance through Multithreading and Parallel Programming Techniques
+you can find it here: repository ()
+**Repository:** [https://github.com/francesctr4/Nous-Engine](https://github.com/francesctr4/Nous-Engine)  
+
 ---
 
 ## 📚 Table of Contents
