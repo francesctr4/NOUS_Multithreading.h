@@ -55,22 +55,22 @@ Shutdown and Cleanup
 
 int main(int argc, char** argv)
 {
-NOUS_Multithreading::RegisterMainThread();
-
-// Create the job system dynamically
-NOUS_Multithreading::NOUS_JobSystem* jobSystem = new NOUS_Multithreading::NOUS_JobSystem();
-
-// Submit jobs
-jobSystem->SubmitJob([]() { /* task 1 */ }, "Task1");
-jobSystem->SubmitJob([]() { /* task 2 */ }, "Task2");
-
-// Wait for completion
-jobSystem->WaitForPendingJobs();
-
-// Clean up when done
-delete jobSystem;
-NOUS_Multithreading::UnregisterMainThread();
-
-return 0;
+   NOUS_Multithreading::RegisterMainThread();
+   
+   // Create the job system dynamically
+   NOUS_Multithreading::NOUS_JobSystem* jobSystem = new NOUS_Multithreading::NOUS_JobSystem();
+   
+   // Submit jobs
+   jobSystem->SubmitJob([]() { /* task 1 */ }, "Task1");
+   jobSystem->SubmitJob([]() { /* task 2 */ }, "Task2");
+   
+   // Wait for completion
+   jobSystem->WaitForPendingJobs();
+   
+   // Clean up when done
+   delete jobSystem;
+   NOUS_Multithreading::UnregisterMainThread();
+   
+   return 0;
 }
 ```
