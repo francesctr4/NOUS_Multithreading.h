@@ -119,6 +119,8 @@ int main(int argc, char** argv)
 }
 ```
 
+---
+
 ### **Documentation**  
 
 ## ⚙️ `NOUS_Job`
@@ -138,21 +140,19 @@ Creates a new job with a given name and function.
 ### `void Execute()`
 Executes the job's stored function.
 
-- **Behavior:** Runs the function passed during construction.
-
 ---
 
 ### `const std::string& GetName()`
 Returns the name identifier of the job.
 
-- **Returns:** A constant reference to the job's name.
+---
 
 ## 🧵 `NOUS_Thread`
 A wrapper around `std::thread` with additional metadata for job execution, tracking, and debug support.
 
 ---
 
-### 🔨 Constructors & Assignment
+### Constructors & Assignment
 
 #### `NOUS_Thread()`
 Initializes a thread object with default values. Does not start the thread automatically.
@@ -162,7 +162,7 @@ Destructor. Automatically joins the thread if it is still running.
 
 ---
 
-### ▶️ `void Start(std::function<void()> func)`
+### `void Start(std::function<void()> func)`
 Starts the thread with the specified function.
 
 - **Parameters:**
@@ -171,12 +171,12 @@ Starts the thread with the specified function.
 
 ---
 
-### 🔚 `void Join()`
+### `void Join()`
 Joins the thread if it's joinable and marks it as no longer running.
 
 ---
 
-### 🔧 Setters and Getters
+### Setters and Getters
 
 #### `void SetName(const std::string& name)`
 Sets a name for the thread (for debugging purposes).
@@ -204,7 +204,7 @@ Returns the numeric ID of the thread.
 
 ---
 
-### ⏱️ Execution Time Tracking
+### Execution Time Tracking
 
 #### `void StartExecutionTimer()`
 Starts a timer to track how long the thread runs its current job.
@@ -218,7 +218,7 @@ If the timer is still running, returns the current elapsed time.
 
 ---
 
-### 🧭 Thread Identification Utilities
+### Thread Identification Utilities
 
 #### `void SetThreadID(std::thread::id id)`
 Manually sets a thread ID using the hash of the given `std::thread::id`.
@@ -228,17 +228,19 @@ Generates a hashed `uint16_t` ID from a given thread ID.
 
 ---
 
-### 🧾 State Description
+### State Description
 
 #### `static const std::string GetStringFromState(const ThreadState& state)`
 Converts a `ThreadState` enum to a string representation (`READY`, `RUNNING`, or `UNKNOWN`).
 
 ---
 
-### 😴 Sleep Utility
+### Sleep Utility
 
 #### `static const void SleepMS(const uint32_t& ms)`
 Pauses the current thread for the specified number of milliseconds.
+
+---
 
 ## 🧵 `NOUS_ThreadPool`
 Manages a pool of worker threads and distributes jobs among them.
@@ -285,6 +287,8 @@ Returns a reference to the internal vector of worker threads.
 Returns a reference to the internal job queue.
 
 - **Returns:** `std::queue` of pending `NOUS_Job*` tasks.
+
+---
 
 ## 🧠 `NOUS_JobSystem`
 High-level interface for job submission and management.
@@ -334,7 +338,9 @@ Returns a reference to the internal `NOUS_ThreadPool` used by the job system.
 ### `int GetPendingJobs() const`
 Returns the number of pending, unprocessed jobs still in the system.
 
-## 🔧 Global Functions
+---
+
+## 🔧 `Global Functions`
 
 ### `void RegisterMainThread()`
 Initializes the main thread tracking.
