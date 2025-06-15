@@ -11,14 +11,16 @@ Single-header, cross-platform C++11 library for managing concurrent task executi
 
 ---
 
+### Enhancing Software Performance through Multithreading and Parallel Programming Techniques
+
+This repository contains source code developed as part of my **Bachelor's Thesis (TFG)**.
+
+**Main Repository:** [https://github.com/francesctr4/Nous-Engine](https://github.com/francesctr4/Nous-Engine)
+**Multithreading Library:** [https://github.com/francesctr4/NOUS_Multithreading.h](https://github.com/francesctr4/NOUS_Multithreading.h)
+
 **Author:** Francesc Teruel Rodriguez ([francesctr4](https://github.com/francesctr4) on GitHub)  
 **Created:** 30/06/2025  
 **Version:** 1.0  
-**Repository:** [https://github.com/francesctr4/NOUS_Multithreading.h](https://github.com/francesctr4/NOUS_Multithreading.h)  
-
-### Enhancing Software Performance through Multithreading and Parallel Programming Techniques
-This repository contains the source code and materials developed as part of my **Trabajo Fin de Grado (TFG)**.
-**Repository:** [https://github.com/francesctr4/Nous-Engine](https://github.com/francesctr4/Nous-Engine)
 
 **License:** MIT License  
 © 2025 Francesc Teruel Rodriguez
