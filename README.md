@@ -27,7 +27,7 @@ you can find it here: repository ()
 
 ## 📚 Table of Contents
 
-- [Home](#nous_multithreading.h)
+- [Home](#nous_multithreadingh)
 - [Dependencies](#dependencies)
 - [Setup](#setup)
 - [Usage](#usage)
