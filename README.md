@@ -2,7 +2,7 @@
 
 ---
 
-### Thread Pool based Job System Implementation
+### Thread Pool-based Job System Implementation
 
 Single-header, cross-platform C++11 library for managing concurrent task execution.
 
