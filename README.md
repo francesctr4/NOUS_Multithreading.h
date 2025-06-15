@@ -16,12 +16,17 @@ A single-header, cross-platform C++11 library for managing concurrent task execu
 **Version:** 1.0  
 **Repository:** [https://github.com/francesctr4/NOUS_Multithreading.h](https://github.com/francesctr4/NOUS_Multithreading.h)  
 
+### Enhancing Software Performance through Multithreading and Parallel Programming Techniques
+This repository contains the source code and materials developed as part of my **Trabajo Fin de Grado (TFG)**.
+**Repository:** [https://github.com/francesctr4/Nous-Engine](https://github.com/francesctr4/Nous-Engine)
+
 **License:** MIT License  
 © 2025 Francesc Teruel Rodriguez
 
-this is part of my tfg: Enhancing Software Performance through Multithreading and Parallel Programming Techniques
-you can find it here: repository ()
-**Repository:** [https://github.com/francesctr4/Nous-Engine](https://github.com/francesctr4/Nous-Engine)  
+---
+
+### **Contributing**
+Pull requests are welcome! If you'd like to suggest improvements, add features, or report issues, feel free to open a GitHub issue or PR.
 
 ---
 
@@ -44,11 +49,6 @@ you can find it here: repository ()
 ### **Dependencies**  
 
 - ISO C++11 Standard (compile with `/std:c++11` or `-std=c++11`) or newer
-
----
-
-### **Contributing**
-Pull requests are welcome! If you'd like to suggest improvements, add features, or report issues, feel free to open a GitHub issue or PR.
 
 ---
 
