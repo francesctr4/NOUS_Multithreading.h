@@ -41,10 +41,10 @@ Pull requests are welcome! If you'd like to suggest improvements, add features, 
 - [Usage](#usage)
 - [Quick Start](#quick-start)
 - [Documentation](#documentation)
-  - [`NOUS_Job`](#-nous_job)
-  - [`NOUS_Thread`](#-nous_thread)
-  - [`NOUS_ThreadPool`](#-nous_threadpool)
-  - [`NOUS_JobSystem`](#-nous_jobsystem)
+  - [NOUS_Job](#-nous_job)
+  - [NOUS_Thread](#-nous_thread)
+  - [NOUS_ThreadPool](#-nous_threadpool)
+  - [NOUS_JobSystem](#-nous_jobsystem)
   - [Global Functions](#-global-functions)
 
 ---
